@@ -1,5 +1,5 @@
 {
-  "name": "prizeless/laravel-5-helpers-postgres",
+  "name": "paulkphp/laravel-5-helpers-postgres",
   "type": "library",
   "description": "Group of common and easy to use base classes for a Laravel 5.1 project",
   "keywords": [
