@@ -144,7 +144,7 @@ abstract class Search extends Repository
                 if (is_array($value) === true) {
                     $query = $query->orWhereIn($column, $value);
                 } else {
-                    $query = $query->orWhere($column, 'LIKE', "%$value%");
+                    $query = $query->orWhere($column, 'ILIKE', "%$value%");
                 }
             }
         });
