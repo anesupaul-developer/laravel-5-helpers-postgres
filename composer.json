@@ -1,5 +1,5 @@
 {
-  "name": "prizeless/laravel-5-helpers",
+  "name": "prizeless/laravel-5-helpers-postgres",
   "type": "library",
   "description": "Group of common and easy to use base classes for a Laravel 5.1 project",
   "keywords": [
@@ -11,8 +11,12 @@
   "license": "MIT",
   "authors": [
     {
-      "name": "Antony  ",
+      "name": "Antony",
       "email": "developer@dripdata.net"
+    },
+    {
+      "name": "Anesu Ngirande",
+      "email": "anesupaulngirande@gmail.com"
     }
   ],
   "require": {
