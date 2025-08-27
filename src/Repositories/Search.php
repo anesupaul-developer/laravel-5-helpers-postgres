@@ -225,6 +225,14 @@ abstract class Search extends Repository
         return $this;
     }
 
+    public function setStartDateTime($date, $timezone = 'Africa/Harare')
+    {
+        $timestamp       = strtotime($date);
+        $this->startDate = Carbon::createFromTimestamp($timestamp)->timezone($timezone)->toDateTimeString();
+
+        return $this;
+    }
+
     public function setStartDateInverted($date, $timezone = 'Africa/Harare')
     {
         $timestamp               = strtotime($date);
@@ -237,6 +245,14 @@ abstract class Search extends Repository
     {
         $timestamp     = strtotime($date);
         $this->endDate = Carbon::createFromTimestamp($timestamp)->timezone($timezone)->toDateString();
+
+        return $this;
+    }
+
+    public function setEndDateTime($date, $timezone = 'Africa/Harare')
+    {
+        $timestamp       = strtotime($date);
+        $this->endDate = Carbon::createFromTimestamp($timestamp)->timezone($timezone)->toDateTimeString();
 
         return $this;
     }
