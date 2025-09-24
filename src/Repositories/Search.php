@@ -46,7 +46,7 @@ abstract class Search extends Repository
             $this->addDatesInverted($query);
             $this->addMinSearch($query);
             $this->addMaxSearch($query);
-            $this->withExists($query);
+            $this->searchRelationExists($query);
 
             $query = $query->where(function ($query) use ($search) {
                 foreach ($search as $column => $value) {
@@ -299,7 +299,7 @@ abstract class Search extends Repository
     /**
      * Add withExists relationship
      */
-    protected function withExists(&$query)
+    protected function searchRelationExists(&$query)
     {
         if (! empty($this->relationExistSearch)) {
             $alias = "has_".$this->relationExistSearch->relationship;
