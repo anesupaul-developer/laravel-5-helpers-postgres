@@ -3,6 +3,7 @@
 namespace Laravel5Helpers\Repositories;
 
 use Illuminate\Support\Str;
+use Laravel5Helpers\Definitions\RelationExistSearch;
 use PDOException;
 use function is_array;
 use Laravel5Helpers\Exceptions\ResourceGetError;
@@ -22,6 +23,8 @@ abstract class Search extends Repository
     protected $startDateInverted;
 
     protected $endDateInverted;
+
+    private $relationExistSearch;
 
     protected $startDateField = 'created_at';
 
@@ -43,6 +46,7 @@ abstract class Search extends Repository
             $this->addDatesInverted($query);
             $this->addMinSearch($query);
             $this->addMaxSearch($query);
+            $this->withExists($query);
 
             $query = $query->where(function ($query) use ($search) {
                 foreach ($search as $column => $value) {
@@ -290,5 +294,28 @@ abstract class Search extends Repository
                 }
             }
         });
+    }
+
+    /**
+     * Add withExists relationship
+     */
+    protected function withExists(&$query)
+    {
+        if (! empty($this->relationExistSearch)) {
+            $alias = "has_".$this->relationExistSearch->relationship;
+
+            $query->withExists([
+                $this->relationExistSearch->relationship . " as " . $alias => function ($q) {
+                    $q->where($this->relationExistSearch->fieldName, $this->relationExistSearch->fieldValue);
+                }
+            ]);
+        }
+    }
+
+    public function setRelationExistSearch(RelationExistSearch  $relationExistSearch)
+    {
+        $this->relationExistSearch = $relationExistSearch;
+
+        return $this;
     }
 }
