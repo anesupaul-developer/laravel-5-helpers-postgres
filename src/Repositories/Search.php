@@ -75,6 +75,7 @@ abstract class Search extends Repository
             $this->addDatesInverted($query);
             $this->addMinSearch($query);
             $this->addMaxSearch($query);
+            $this->searchRelationExists($query);
 
             if (empty($this->order) === false) {
                 return $query->orderBy($this->order->field, $this->order->direction)->paginate($this->pageSize);
