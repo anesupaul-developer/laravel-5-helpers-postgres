@@ -78,10 +78,10 @@ abstract class Search extends Repository
             $this->searchRelationExists($query);
 
             if (empty($this->order) === false) {
-                return $query->orderBy($this->order->field, $this->order->direction)->cursorPaginate($this->pageSize);
+                return $query->orderBy($this->order->field, $this->order->direction)->paginate($this->pageSize);
             }
 
-            return $query->cursorPaginate($this->pageSize);
+            return $query->paginate($this->pageSize);
         } catch (\Exception $exception) {
             $this->logException($exception);
             throw new ResourceGetError($this->getModelShortName());
