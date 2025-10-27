@@ -27,6 +27,8 @@ abstract class Repository
     protected $pageSize = 15;
     protected $order = null;
 
+    protected $isRandomOrder = false;
+
     /**
      * @param Definition $definition
      *
@@ -233,6 +235,13 @@ abstract class Repository
     public function setResultOrder($field, $direction = self::ORDER_ASC)
     {
         $this->order = new ResultOrder($field, $direction);
+
+        return $this;
+    }
+
+    public function setRandomOrder(bool $isRandomOrder)
+    {
+        $this->isRandomOrder = $isRandomOrder;
 
         return $this;
     }

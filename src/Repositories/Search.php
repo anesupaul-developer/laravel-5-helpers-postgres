@@ -77,6 +77,10 @@ abstract class Search extends Repository
             $this->addMaxSearch($query);
             $this->searchRelationExists($query);
 
+            if ($this->isRandomOrder) {
+                return $query->inRandomOrder()->paginate($this->pageSize);
+            }
+
             if (empty($this->order) === false) {
                 return $query->orderBy($this->order->field, $this->order->direction)->paginate($this->pageSize);
             }
