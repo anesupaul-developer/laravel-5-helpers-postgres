@@ -50,7 +50,7 @@ abstract class Search extends Repository
 
             $query = $query->where(function ($query) use ($search) {
                 foreach ($search as $column => $value) {
-                    $query = $query->like($column, $value);
+                    $query = $query->where($column, 'ILIKE', "%$value%");
                 }
             });
 
@@ -108,7 +108,7 @@ abstract class Search extends Repository
                                 if (empty($relation->value) === true && Str::length($relation->value) == 0) {
                                     $query->whereNull($relation->column);
                                 } else {
-                                    $query->like($relation->column, $relation->value);
+                                    $query->where($relation->column, 'ILIKE', '%$relation->value%');
                                 }
                             } elseif (empty($relation->value) === true
                                       && Str::length($relation->value) == 0
