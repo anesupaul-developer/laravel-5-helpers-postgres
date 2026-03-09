@@ -50,7 +50,7 @@ abstract class Search extends Repository
 
             $query = $query->where(function ($query) use ($search) {
                 foreach ($search as $column => $value) {
-                    $query = $query->where($column, 'ILIKE', "%$value%");
+                    $query = $query->orWhere($column, 'ILIKE', "%$value%");
                 }
             });
 
